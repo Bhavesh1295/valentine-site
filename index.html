@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>My Valentine ❤️</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:linear-gradient(to right,#ff758c,#ff7eb3);
+text-align:center;
+color:white;
+}
+
+.page{display:none;padding:60px;}
+.active{display:block;}
+
+button{
+padding:12px 25px;
+margin:10px;
+border:none;
+border-radius:25px;
+background:red;
+color:white;
+font-size:18px;
+cursor:pointer;
+}
+
+button:hover{background:#ff0033;}
+
+img,video{
+width:220px;
+border-radius:15px;
+}
+
+/* FIX GIFT VIDEO SIZE */
+.giftVideo{
+width:70px;
+height:auto;
+border-radius:12px;
+display:block;
+margin:0 auto 5px;
+}
+
+.option{
+cursor:pointer;
+padding:12px 25px;
+margin:10px auto;
+border:2px solid white;
+border-radius:12px;
+width:fit-content;
+background:rgba(255,255,255,0.15);
+}
+
+.option:hover{
+background:rgba(255,255,255,0.25);
+}
+
+#feedback{
+margin-top:20px;
+font-size:18px;
+}
+/* Floating Hearts Background - Top to Bottom */
+
+.heart {
+  position: fixed;
+  top: -20px;            /* Start from top */
+  font-size: 22px;
+  animation: floatHeartDown 6s linear forwards;
+  z-index: 0;
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+@keyframes floatHeartDown {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) scale(1.5); /* Move downward */
+    opacity: 0;
+  }
+}
+
+
+</style>
+</head>
+
+<body>
+
+<!-- BACKGROUND MUSIC -->
+<audio id="bgMusic" loop>
+<source src="chahvan.mp3.mp3" type="audio/mpeg">
+</audio>
+
+<button id="musicBtn" onclick="toggleMusic()"
+style="position:fixed;top:20px;right:20px;">
+🔊 Play Music
+</button>
+
+<!-- PAGE 1 -->
+<div id="page1" class="page active">
+<h1>Will you be Mine ? ❤️</h1>
+<p>Life is an incredible journey, and I want to spend every single second of it with you.</p>
+<button onclick="openPage(2)">YES 💖</button>
+<button id="noBtn">NO 😜</button>
+</div>
+
+<!-- PAGE 2 -->
+<div id="page2" class="page">
+<h1>Happy Valentine's Day Baby ❤️</h1>
+<p>Me bhot lucky hu ki tu meri life me aai 💕</p>
+
+<video autoplay loop muted playsinline>
+<source src="WhatsApp Video 2026-01-31 at 15.59.59.mp4">
+</video>
+
+<br><br>
+<button onclick="openPage(3)">See My Gifts 🎁</button>
+</div>
+
+<!-- PAGE 3 -->
+<div id="page3" class="page">
+<h1>Something For You ❤️</h1>
+
+<button onclick="openPage(4)">
+<video class="giftVideo" autoplay loop muted playsinline>
+<source src="WhatsApp Video 2026-01-31 at 15.59.59.mp4">
+</video>
+Gift 1🎁
+</button>
+
+<button onclick="openPage(5)">
+<video class="giftVideo" autoplay loop muted playsinline>
+<source src="WhatsApp Video 2026-01-31 at 16.16.20.mp4">
+</video>
+Gift 2💌
+</button>
+
+<button onclick="openPage(6)">
+<video class="giftVideo" autoplay loop muted playsinline>
+<source src="WhatsApp Video 2026-01-31 at 16.16.21.mp4">
+</video>
+Gift 3
+</button>
+
+<button onclick="openPage(8)">
+<video class="giftVideo" autoplay loop muted playsinline>
+<source src="WhatsApp Video 2026-01-31 at 16.16.22.mp4">
+</video>
+Gift 4
+</button>
+
+<br><br>
+<button onclick="openPage(7)">Finally ❤️</button>
+<br>
+<button onclick="openPage(2)">⬅ Back</button>
+</div>
+
+<!-- PAGE 4 QUIZ -->
+<div id="page4" class="page">
+<h2 id="question"></h2>
+<div id="options"></div>
+<p id="feedback"></p>
+<button onclick="openPage(3)">⬅ Back</button>
+</div>
+
+<!-- PAGE 5 LETTER -->
+<div id="page5" class="page">
+<h1>Love Letter 💌</h1>
+<p>I meet a loat of people but nobody feels like you.💖
+    <br>You are my happiness, my peace and my forever ❤️  
+    <br>My love you are the most beautiful chapter..<br> 
+    In the book of my life.. 💘
+    <br>I promise to always love you.🫶🏻❤️
+</p>
+<button onclick="openPage(3)">⬅ Back</button>
+</div>
+
+<!-- PAGE 6 MEMORIES -->
+<div id="page6" class="page">
+<h1>Our Memories 🖼</h1>
+<p>Every moment with you is special ❤️</p>
+
+<!-- MEMORY PHOTOS -->
+<img src="WhatsApp Image 2026-01-31 at 21.02.41 (1).jpeg">
+<img src="WhatsApp Image 2026-01-31 at 21.02.41 (2).jpeg">
+<img src="WhatsApp Image 2026-01-31 at 21.02.41.jpeg">
+
+<br><br>
+
+<!-- MEMORY VIDEO -->
+<video autoplay loop muted playsinline>
+  <source src="WhatsApp Video 2026-01-31 at 21.02.40.mp4" type="video/mp4">
+</video>
+
+<br><br>
+<button onclick="openPage(3)">⬅ Back</button>
+</div>
+
+
+<!-- PAGE 7 FINAL -->
+<div id="page7" class="page">
+<h1>You Are My Forever ❤️🥰</h1>
+<img src="flamez-ivo-anime.gif">
+
+<p>No matter what happens, I choose you everyday 🥰</p>
+<p>you are the best thing that has ever happened to me.😘</p>
+<p>Every moment we spend together becomes a beautiful memory that i cherish deeply.💖</p>
+<p>I love you so mush my love 💖</p>
+<p>Thank you for being my peace,my smile,my love.🫂❤️</p>
+
+<button onclick="openPage(3)">⬅ Back</button>
+</div>
+
+<!-- PAGE 8 SONGS -->
+<div id="page8" class="page">
+<h1>Our Love Songs 🎵</h1>
+
+<button onclick="toggleSong('Tum Ho Toh.mp3')">▶ Song 1</button><br>
+<button onclick="toggleSong('Until_I_Found_You.mp3')">▶ Song 2</button><br>
+<button onclick="toggleSong('Finding Her.mp3')">▶ Song 3</button><br><br>
+
+<button onclick="openPage(3)">⬅ Back</button>
+</div>
+
+<script>
+
+/* PAGE SWITCH */
+function openPage(n){
+document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+document.getElementById("page"+n).classList.add("active");
+
+if(n===4){
+qIndex=0;
+loadQuestion();
+}
+}
+
+/* BACKGROUND MUSIC */
+let musicPlaying=false;
+const music=document.getElementById("bgMusic");
+
+function toggleMusic(){
+ if(!musicPlaying){
+  music.play();
+  musicPlaying=true;
+  musicBtn.innerText="🔇 Pause Music";
+ }else{
+  music.pause();
+  musicPlaying=false;
+  musicBtn.innerText="🔊 Play Music";
+ }
+}
+
+/* NO BUTTON RUN */
+const noBtn=document.getElementById("noBtn");
+noBtn.onmouseover=()=>{
+noBtn.style.position="absolute";
+noBtn.style.left=Math.random()*300+"px";
+noBtn.style.top=Math.random()*300+"px";
+}
+
+/* QUIZ */
+const quiz=[
+{q:"Where did we first meet?",options:["Mall","School","Park","Instagram"],answer:"School"},
+{q:"Who is the Boss in this relationship?",options:["You","Me"],answer:"Me"},
+{q:"Who loves more?",options:["You","Me","Both"],answer:"Both"}
+];
+
+let qIndex=0;
+
+function loadQuestion(){
+feedback.innerHTML="";
+question.innerHTML=quiz[qIndex].q;
+let html="";
+quiz[qIndex].options.forEach(o=>{
+html+=`<div class="option" onclick="selectOption('${o}')">${o}</div>`;
+});
+options.innerHTML=html;
+}
+
+function selectOption(ans){
+if(ans===quiz[qIndex].answer){
+feedback.innerHTML="✔ Correct 😍";
+setTimeout(()=>{
+qIndex++;
+if(qIndex<quiz.length) loadQuestion();
+else{openPage(3);}
+
+},800);
+}else{
+feedback.innerHTML="✖ Wrong 😏 Try again!";
+}
+}
+
+/* SONG PLAYER */
+let player=new Audio();
+let currentSong="";
+
+function toggleSong(file){
+ if(currentSong===file && !player.paused){
+  player.pause();
+ }else{
+  player.src=file;
+  player.play();
+  currentSong=file;
+ }
+}
+
+</script>
+<script>
+setInterval(()=>{
+const heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML=["❤️","💖","💕","💘","😍"][Math.floor(Math.random()*5)];
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=(18+Math.random()*20)+"px";
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},6000);
+
+},400);
+</script>
+
+</body>
+</html>
