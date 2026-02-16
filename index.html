@@ -85,10 +85,13 @@ font-size:18px;
 }
 
 
+
+
 </style>
 </head>
 
 <body>
+  
 
 <!-- BACKGROUND MUSIC -->
 <audio id="bgMusic" loop>
@@ -153,6 +156,13 @@ Gift 3
 Gift 4
 </button>
 
+<button onclick="openPage(9)">
+<video class="giftVideo" autoplay loop muted playsinline>
+<source src="WhatsApp Video 2026-01-31 at 16.16.21.mp4">
+</video>
+Gift 5🎁
+</button>
+
 <br><br>
 <button onclick="openPage(7)">Finally ❤️</button>
 <br>
@@ -201,6 +211,7 @@ Gift 4
 </div>
 
 
+
 <!-- PAGE 7 FINAL -->
 <div id="page7" class="page">
 <h1>You Are My Forever ❤️🥰</h1>
@@ -211,6 +222,15 @@ Gift 4
 <p>Every moment we spend together becomes a beautiful memory that i cherish deeply.💖</p>
 <p>I love you so mush my love 💖</p>
 <p>Thank you for being my peace,my smile,my love.🫂❤️</p>
+
+<div id="loveCounter" style="
+margin-top:25px;
+font-size:20px;
+font-weight:bold;
+color:#ffe6f0;
+">
+</div>
+
 
 <button onclick="openPage(3)">⬅ Back</button>
 </div>
@@ -224,6 +244,38 @@ Gift 4
 <button onclick="toggleSong('Finding Her.mp3')">▶ Song 3</button><br><br>
 
 <button onclick="openPage(3)">⬅ Back</button>
+</div>
+
+<!-- PAGE 9 SCRATCH CARD -->
+<div id="page9" class="page">
+    <h1>Scratch & Reveal 💝</h1>
+    <p>Scratch it slowly my love 😘</p>
+
+    <div style="position:relative; display:inline-block;">
+        <canvas id="scratchCard" width="300" height="150"
+        style="border-radius:15px; cursor:pointer;"></canvas>
+
+        <div id="hiddenMessage" style="
+            position:absolute;
+            top:0;
+            left:0;
+            width:300px;
+            height:150px;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            font-size:20px;
+            font-weight:bold;
+            color:#ff2e63;
+            background:white;
+            border-radius:15px;
+            z-index:-1;">
+            You Won My Heart Forever I love you kashu ❤️🥰
+        </div>
+    </div>
+
+    <br><br>
+    <button onclick="openPage(3)">⬅ Back</button>
 </div>
 
 <script>
@@ -325,6 +377,100 @@ heart.remove();
 },6000);
 
 },400);
+
+
+
+
+const canvas = document.getElementById("scratchCard");
+const ctx = canvas.getContext("2d");
+
+// Fill scratch layer
+ctx.fillStyle = "#b0b0b0";
+ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+// Text
+ctx.font = "20px Arial";
+ctx.fillStyle = "#555";
+ctx.textAlign = "center";
+
+
+let isDrawing = false;
+
+// ---- DESKTOP ----
+canvas.addEventListener("mousedown", () => isDrawing = true);
+canvas.addEventListener("mouseup", () => isDrawing = false);
+canvas.addEventListener("mouseleave", () => isDrawing = false);
+canvas.addEventListener("mousemove", scratch);
+
+// ---- MOBILE ----
+canvas.addEventListener("touchstart", () => isDrawing = true);
+canvas.addEventListener("touchend", () => isDrawing = false);
+canvas.addEventListener("touchcancel", () => isDrawing = false);
+canvas.addEventListener("touchmove", scratchTouch);
+
+function scratch(e) {
+    if (!isDrawing) return;
+
+    const rect = canvas.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    draw(x, y);
+}
+
+function scratchTouch(e) {
+    e.preventDefault(); // very important for mobile
+    if (!isDrawing) return;
+
+    const rect = canvas.getBoundingClientRect();
+    const touch = e.touches[0];
+    const x = touch.clientX - rect.left;
+    const y = touch.clientY - rect.top;
+
+    draw(x, y);
+}
+
+function draw(x, y) {
+    ctx.globalCompositeOperation = "destination-out";
+    ctx.beginPath();
+    ctx.arc(x, y, 18, 0, Math.PI * 2);
+    ctx.fill();
+}
+
+
+
+
+/* ❤️ LOVE COUNTER ❤️ */
+
+// 👉 YAHAN DATE SET KARO (VERY IMPORTANT)
+const loveStartDate = new Date("2024-08-21T00:00:00"); 
+// format: YYYY-MM-DDTHH:MM:SS
+
+function updateLoveCounter(){
+    const now = new Date();
+    let diff = now - loveStartDate;
+
+    if(diff < 0) diff = 0;
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    const counter = document.getElementById("loveCounter");
+    if(counter){
+        counter.innerHTML = `
+        ❤️ I’ve been loving you for <br>
+        ${days} days ${hours} hours ${minutes} minutes ${seconds} seconds
+        `;
+    }
+}
+
+setInterval(updateLoveCounter, 1000);
+updateLoveCounter();
+</script>
+
+
 </script>
 
 </body>
